@@ -37,6 +37,13 @@ const MainContainer = styled.main`
 
   & > h1 {
     font-size: 58px;
+
+    @media only screen and (max-width:768px){
+      font-size:42px;
+    }
+    @media only screen and (max-width:576px){
+      font-size:30px;
+    }
   }
 `;
 const Button = styled.button`
@@ -52,6 +59,15 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @media only screen and (max-width:768px){
+    font-size:16px;
+    padding:0.5rem 1.5rem;
+  }
+  @media only screen and (max-width:576px){
+    font-size:14px;
+    padding:0.25rem 1.25rem;
+  }
 
   &:disabled {
     opacity: 0.5;

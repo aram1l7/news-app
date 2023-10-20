@@ -52,12 +52,17 @@ function Feed({
 const TopBar = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media only screen and (max-width:576px){
+    flex-direction: column;
+    gap: 1rem;
+  }
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 4rem 0;
+  padding: 4rem 1.5rem;
   max-width: 1300px;
   gap:1.5rem;
   margin: 0px auto;
@@ -65,7 +70,7 @@ const Wrapper = styled.div`
 
 const FeedContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   grid-auto-rows: max-content;
 `;

@@ -38,15 +38,13 @@ function Article({ data = {}, isLoading }: { data: any; isLoading: boolean }) {
 }
 
 const Wrapper = styled.div`
-  background: black;
   min-height: 100vh;
 
-  color: white;
   padding: 2rem;
 
   .inner-wrapper {
     max-width: 1000px;
-    margin: 0px auto;
+    margin: 40px auto;
   }
 
   .img-wrapper {
