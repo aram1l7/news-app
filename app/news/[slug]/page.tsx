@@ -1,6 +1,6 @@
 "use client";
 import { fetchByTitle } from "@/app/api/getNews";
-import Article from "@/views/Article";
+import Article from "@/components/Article";
 
 import React, { useEffect, useState } from "react";
 

@@ -46,7 +46,7 @@ const CardView = styled.div`
   gap: 1.5rem;
   padding: 1rem;
   border-radius: 6px;
-  background: white;
+  background: ${({theme}) => theme.cardBg};
 
   overflow: hidden;
 

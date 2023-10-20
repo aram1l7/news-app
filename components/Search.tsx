@@ -17,6 +17,7 @@ const Input = styled.input`
   padding: 8px 12px;
   border-radius: 4px;
   width:300px;
+  background: ${(props) => props.theme.inputBg};
 `;
 
 export default Search;

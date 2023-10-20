@@ -1,14 +1,14 @@
 import React, {
-  Dispatch,
-  SetStateAction,
   useEffect,
-  useRef,
   useState,
 } from "react";
 import styled from "styled-components";
 import Card from "./Card";
 import Search from "./Search";
 import Filters from "./Filters";
+
+const MemoizedCard = React.memo(Card);
+
 
 function Feed({
   data,
@@ -40,7 +40,8 @@ function Feed({
       <FeedContainer>
         {data.map((item) => {
           return (
-            <Card {...item} key={item.publishedAt} /> //api doesnt give any id publishedAt is the most unique key here
+            <MemoizedCard {...item} key={item.publishedAt} />
+            //api doesnt give any id publishedAt is the most unique key here
           );
         })}
       </FeedContainer>
@@ -56,15 +57,16 @@ const TopBar = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
+  padding: 4rem 0;
+  max-width: 1300px;
+  gap:1.5rem;
+  margin: 0px auto;
 `;
 
 const FeedContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  max-width: 1300px;
   gap: 2rem;
-  margin: 1rem auto;
   grid-auto-rows: max-content;
 `;
 
