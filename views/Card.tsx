@@ -16,14 +16,24 @@ function Card({
   urlToImage: string;
   publishedAt: string;
 }) {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <CardView>
       <div className="img-wrapper">
         <img src={urlToImage || "/fallback.jpg"} />
       </div>
       <div>
-        <h4 onClick={() => router.push(`/news/${generateSlug(title)}`)}>{title}</h4>
+        <h4
+          onClick={() =>
+            router.push(
+              `/news/${generateSlug(title)}?desc=${encodeURIComponent(
+                description
+              )}`
+            )
+          }
+        >
+          {title}
+        </h4>
       </div>
     </CardView>
   );

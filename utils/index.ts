@@ -6,9 +6,7 @@ export function generateSlug(title: string) {
     lower: true,
   });
 }
-export function reverseSlug(slug: string) {
-  return slug.replace(/-/g, " ");
-}
+
 
 function addOrdinalSuffix(day: number) {
   if (day >= 11 && day <= 13) {

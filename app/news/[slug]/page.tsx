@@ -1,33 +1,44 @@
 "use client";
 import { fetchByTitle } from "@/app/api/getNews";
-import { getOneWeekBefore, reverseSlug } from "@/utils";
 import Article from "@/views/Article";
 
 import React, { useEffect, useState } from "react";
 
-function Page({ params }: { params: { slug: string } }) {
-  const [data, setData] = useState([]);
-  const realTitle = reverseSlug(params.slug);
+type Props = {
+  params?: {
+    slug?: string;
+  };
+  searchParams: {
+    desc: string;
+  };
+};
 
+function Page(props: Props) {
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const { searchParams } = props;
 
   useEffect(() => {
     async function fetchArticle() {
       setLoading(true);
       try {
-        const { data } = await fetchByTitle(getOneWeekBefore(), realTitle);
+        console.log(searchParams.desc, "desc");
+
+        const { data } = await fetchByTitle(searchParams.desc);
         console.log(data, "data");
         setData(data.articles[0]);
+        setLoading(false);
       } catch (e) {
         console.log(e);
+        setLoading(false);
       }
-      setLoading(false);
     }
 
     fetchArticle();
   }, []);
 
-  return <Article data={data} />;
+  return <Article isLoading={loading} data={data} />;
 }
 
 export default Page;

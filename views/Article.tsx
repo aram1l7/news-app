@@ -2,33 +2,37 @@ import { beautifyDate } from "@/utils";
 import React from "react";
 import styled from "styled-components";
 
-function Article({ data }: { data: any }) {
+function Article({ data = {}, isLoading }: { data: any; isLoading: boolean }) {
   const { title, description, urlToImage, publishedAt, author, content, url } =
     data;
   return (
     <Wrapper>
-      <div className="inner-wrapper">
-        <h1>{title}</h1>
-        <div className="img-wrapper">
-          <img src={urlToImage} />
+      {isLoading || Object.keys(data).length < 1 ? (
+        <div> Loading...</div>
+      ) : (
+        <div className="inner-wrapper">
+          <h1>{title}</h1>
+          <div className="img-wrapper">
+            <img src={urlToImage} />
+          </div>
+          <p className="desc">{description}</p>
+
+          <div>
+            <p className="content">{content}</p>
+
+            <a href={url} target="_blank">
+              Read full article here
+            </a>
+          </div>
+
+          <p className="published_at">
+            Published at: <b>{beautifyDate(publishedAt)}</b>{" "}
+          </p>
+          <span className="author">
+            By: <i>{author}</i>{" "}
+          </span>
         </div>
-        <p className="desc">{description}</p>
-
-        <div>
-          <p className="content">{content}</p>
-
-          <a href={url} target="_blank">
-            Read full article here
-          </a>
-        </div>
-
-        <p className="published_at">
-          Published at: <b>{beautifyDate(publishedAt)}</b>{" "}
-        </p>
-        <span className="author">
-          By: <i>{author}</i>{" "}
-        </span>
-      </div>
+      )}
     </Wrapper>
   );
 }

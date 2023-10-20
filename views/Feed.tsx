@@ -8,15 +8,18 @@ import React, {
 import styled from "styled-components";
 import Card from "./Card";
 import Search from "./Search";
+import Filters from "./Filters";
 
 function Feed({
   data,
   setData,
   prevNews,
+  setPrevData,
 }: {
   data: any[];
   prevNews: any[];
   setData: (val: any[]) => void;
+  setPrevData: (val: any[]) => void;
 }) {
   const [search, setSearch] = useState<string>("");
 
@@ -30,7 +33,10 @@ function Feed({
 
   return (
     <Wrapper>
-      <Search search={search} setSearch={setSearch} />
+      <TopBar>
+        <Search search={search} setSearch={setSearch} />
+        <Filters setPrevData={setPrevData} setData={setData} />
+      </TopBar>
       <FeedContainer>
         {data.map((item) => {
           return (
@@ -41,6 +47,11 @@ function Feed({
     </Wrapper>
   );
 }
+
+const TopBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const Wrapper = styled.div`
   display: flex;

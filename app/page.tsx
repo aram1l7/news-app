@@ -9,7 +9,7 @@ import { getOneWeekBefore } from "@/utils";
 export default function Home() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [prevNews, setPrevNews] = useState([]);
+  const [prevNews, setPrevNews] = useState<any[]>([]);
 
   const [error, setError] = useState("");
 
@@ -74,6 +74,7 @@ export default function Home() {
         <Feed
           data={news}
           prevNews={prevNews}
+          setPrevData={(val: any[]) => setPrevNews(val)}
           setData={(val: any) => setNews(val)}
         />
       )}
